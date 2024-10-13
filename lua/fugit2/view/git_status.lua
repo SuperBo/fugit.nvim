@@ -160,14 +160,6 @@ function GitStatus:init(ns_id, repo, last_window, current_file, opts)
     error "[Fugit2] Null repo"
   end
 
-  local default_padding = {
-    top = 0,
-    bottom = 0,
-    left = 1,
-    right = 1,
-  }
-
-  local win_hl = "Normal:Normal,FloatBorder:FloatBorder"
   local buf_readonly_opts = {
     modifiable = false,
     readonly = true,
@@ -183,14 +175,14 @@ function GitStatus:init(ns_id, repo, last_window, current_file, opts)
     focusable = true,
     border = {
       style = "rounded",
-      padding = { top = 1, bottom = 1, left = 1, right = 1 },
+      padding = utils.P_1,
       text = {
         top = NuiText(" 󱖫 Status ", "Fugit2FloatTitle"),
         top_align = "left",
       },
     },
     win_options = {
-      winhighlight = win_hl,
+      winhighlight = utils.WIN_HIGHLIGHT,
       wrap = false,
     },
     buf_options = vim.tbl_extend("force", buf_readonly_opts, {
@@ -204,7 +196,7 @@ function GitStatus:init(ns_id, repo, last_window, current_file, opts)
     focusable = true,
     border = {
       style = "rounded",
-      padding = default_padding,
+      padding = utils.PX_1,
       text = {
         top = NuiText("  Console ", "Fugit2FloatTitle"),
         top_align = "left",
@@ -213,7 +205,7 @@ function GitStatus:init(ns_id, repo, last_window, current_file, opts)
       },
     },
     win_options = {
-      winhighlight = win_hl,
+      winhighlight = utils.WIN_HIGHLIGHT,
     },
     buf_options = vim.tbl_extend("force", buf_readonly_opts, {
       filetype = "fugit2-status-command",
@@ -1805,21 +1797,13 @@ end
 
 ---@return NuiPopup
 function GitStatus:_init_input_popup()
-  local default_padding = {
-    top = 0,
-    bottom = 0,
-    left = 1,
-    right = 1,
-  }
-  local win_hl = "Normal:Normal,FloatBorder:FloatBorder"
-
   local input_popup = NuiPopup {
     ns_id = self.ns_id,
     enter = true,
     focusable = true,
     border = {
       style = "rounded",
-      padding = default_padding,
+      padding = utils.PX_1,
       text = {
         top = NuiText(" Create commit ", "Fugit2MessageHeading"),
         top_align = "left",
@@ -1828,7 +1812,7 @@ function GitStatus:_init_input_popup()
       },
     },
     win_options = {
-      winhighlight = win_hl,
+      winhighlight = utils.WIN_HIGHLIGHT,
     },
     buf_options = {
       modifiable = true,
@@ -1893,20 +1877,13 @@ end
 
 ---@return NuiPopup
 function GitStatus:_init_branch_input()
-  local default_padding = {
-    top = 0,
-    bottom = 0,
-    left = 1,
-    right = 1,
-  }
-  local win_hl = "Normal:Normal,FloatBorder:FloatBorder"
   local input = NuiPopup {
     ns_id = self.ns_id,
     enter = true,
     focusable = true,
     border = {
       style = "rounded",
-      padding = default_padding,
+      padding = utils.PX_1,
       text = {
         top = NuiText(" Create branch ", "Fugit2MessageHeading"),
         top_align = "left",
@@ -1915,7 +1892,7 @@ function GitStatus:_init_branch_input()
       },
     },
     win_options = {
-      winhighlight = win_hl,
+      winhighlight = utils.WIN_HIGHLIGHT,
     },
     buf_options = {
       modifiable = true,
